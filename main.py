@@ -3,12 +3,12 @@ from pydantic import BaseModel,conlist
 from typing import List,Optional
 import pandas as pd
 from model import calculate_meals_nutrients, calculate_nutrition, recommend,output_recommended_recipes
-
+from mangum import Mangum
 
 dataset=pd.read_csv('dataset.csv',compression='gzip')
 
 app = FastAPI()
-
+handler = Mangum(app)
 
 class params(BaseModel):
     n_neighbors:int=5
